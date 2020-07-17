@@ -1,7 +1,5 @@
 = GoogleDocsMOTD
 
-A paper plugin that sets your server's MOTD to the contents of a Google Doc.
-
 == Overview
 
 GoogleDocsMOTD sets your server's MOTD to the contents of a Google Doc.
@@ -24,9 +22,9 @@ To begin, build the plugin from source.
 
 [source]
 ----
-git clone https://github.com/wyskoj/GoogleDocsMOTD
-cd GoogleDocsMOTD
-gradlew shadowjar
+$ git clone https://github.com/wyskoj/GoogleDocsMOTD
+$ cd GoogleDocsMOTD
+$ gradlew shadowjar
 ----
 
 The .jar will appear in `build/libs`. Copy this to your `plugins` directory on your server.
