@@ -1,5 +1,7 @@
 = GoogleDocsMOTD
 
+image:https://img.shields.io/github/workflow/status/wyskoj/GoogleDocsMOTD/Java%20CI%20with%20Gradle[] image:https://img.shields.io/github/license/wyskoj/GoogleDocsMOTD[] image:https://img.shields.io/requires/github/wyskoj/GoogleDocsMOTD[]
+
 == Overview
 
 GoogleDocsMOTD sets your server's MOTD to the contents of a Google Doc.
