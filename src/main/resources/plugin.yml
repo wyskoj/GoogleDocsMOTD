@@ -1,0 +1,7 @@
+name: GoogleDocsMOTD
+version: @version@
+main: org.wysko.googledocsmotd.GoogleDocsMOTD
+api-version: 1.16
+load: STARTUP
+authors: [wyskoj]
+description: Sets your server's MOTD to the contents of a Google Doc.

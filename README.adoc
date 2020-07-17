@@ -1,0 +1,74 @@
+= GoogleDocsMOTD
+
+A paper plugin that sets your server's MOTD to the contents of a Google Doc.
+
+== Overview
+
+GoogleDocsMOTD sets your server's MOTD to the contents of a Google Doc.
+
+image::https://user-images.githubusercontent.com/31376393/87732558-53529200-c79b-11ea-8560-722fce28ed75.png[Screenshot, 500,500]
+
+With the release of Minecraft 1.16, GoogleDocsMOTD fully supports custom colors.
+
+image::https://user-images.githubusercontent.com/31376393/87732561-53eb2880-c79b-11ea-9eaa-2b65739facfb.png[Screenshot, 500,500]
+
+Bold, italics, underline, and strikethrough are supported.
+
+image::https://user-images.githubusercontent.com/31376393/87732560-53529200-c79b-11ea-9e25-b16772a4ade6.png[Screenshot, 500,500]
+
+Edits propagate in real time, so a server restart is not required.
+
+== Setup
+
+To begin, build the plugin from source.
+
+[source]
+----
+git clone https://github.com/wyskoj/GoogleDocsMOTD
+cd GoogleDocsMOTD
+gradlew shadowjar
+----
+
+The .jar will appear in `build/libs`. Copy this to your `plugins` directory on your server.
+
+GoogleDocsMOTD requires a Google Cloud API token to access the Google Doc.
+
+Open the https://console.cloud.google.com/[Google Cloud Platform Console] and https://console.cloud.google.com/projectcreate[create a new project]. Give the project a name and click *Create*. Once the project has been created, open the navigation menu on the left, and select *APIS & Services -> Credentials*. On the left, click *OAuth consent screen*, then check *External*, then click *Create*. Fill the *Application name* field, then click *Save* at the bottom.
+
+Click *Credentials* on the left. At the top, click *+ Create Credentials -> OAuth client ID*, then select *Desktop app*. Enter a name and click *Create*. Click *Ok*.
+
+Under *OAuth 2.0 Client IDs*, the entry is listed. Click the download button on the entry. Save this file to `plugins/GoogleDocsMOTD/credentials.json` (create the folder if does not exist).
+
+Create a new Google Doc. Set the background color to dark grey or brown to simulate the Minecraft background color.
+
+In `plugins/GoogleDocsMOTD`, create a file called `doc.txt` and set the contents to the ID of the Google Doc. The ID of a Google Doc comes from its URL (https://docs.google.com/document/d/<this_is_the_id>/edit).
+
+'''
+
+If you are hosting the server on a machine that does not have restricted console access (a web service like __server.pro__ is restricted), the setup is simple, otherwise, some other steps are necessary.
+
+=== I have access to the machine hosting the server
+
+Launch the server and launch Minecraft, add the server to your server list and refresh to fetch the icon and MOTD. A tab in the machine's web browser should open asking for access. Select your Google account (a warning may appear, you can ignore this since you trust the source (it's you!)). You can close the tab once it has finished, and the plugin should be working.
+
+=== I do not access to the machine hosting the server
+
+You will need to set up a local server to initialize the plugin. Load the plugin and complete the previous steps normally. Launch the server and launch Minecraft, add the server (probably `localhost`) to your server list and refresh to fetch the icon and MOTD. A tab in your web browser should open asking for access. Select your Google account (a warning may appear, you can ignore this since you trust the source (it's you!)).
+
+Once the verification is complete, shutdown the server. A new folder named `tokens` appears in the `plugins/GoogleDocsMOTD` directory. Copy this directory and its contents to your hosting server and restart the remote server.
+
+== Usage
+
+All edits will occur in the linked Google Doc. GoogleDocsMOTD supports all Minecraft text formatting:
+
+* Bold
+* Italics
+* Underline
+* Strikethrough
+* All text colors
+
+Since the server list screen only shows two lines, any text after the first two lines of the Google Doc are omitted (they are still processed). This means that you can have a list of MOTDs in one document, and switch them out by placing it at the beginning of the document.
+
+== License
+
+Distributed under the MIT License. See `LICENSE` for more information.
