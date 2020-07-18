@@ -39,6 +39,8 @@ Click *Credentials* on the left. At the top, click *+ Create Credentials -> OAut
 
 Under *OAuth 2.0 Client IDs*, the entry is listed. Click the download button on the entry. Save this file to `plugins/GoogleDocsMOTD/credentials.json` (create the folder if does not exist).
 
+Click *Dashboard* on the left. Click *+ Enable APIs and Services* at the top, search for *Google Docs API*, then click *Enable*.
+
 Create a new Google Doc. Set the background color to dark grey or brown to simulate the Minecraft background color.
 
 In `plugins/GoogleDocsMOTD`, create a file called `doc.txt` and set the contents to the ID of the Google Doc. The ID of a Google Doc comes from its URL (https://docs.google.com/document/d/<this_is_the_id>/edit).
