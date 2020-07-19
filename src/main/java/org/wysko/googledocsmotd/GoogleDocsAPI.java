@@ -68,6 +68,9 @@ public class GoogleDocsAPI {
 	
 	public static Document getDocument(String documentID) throws GeneralSecurityException, IOException {
 		// Build a new authorized API client service.
+		final java.util.logging.Logger buggyLogger = java.util.logging.Logger.getLogger(FileDataStoreFactory.class.getName());
+		buggyLogger.setLevel(java.util.logging.Level.SEVERE);
+		
 		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 		Docs service = new Docs.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 				.setApplicationName(APPLICATION_NAME)

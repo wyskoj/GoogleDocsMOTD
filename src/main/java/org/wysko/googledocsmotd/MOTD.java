@@ -53,6 +53,7 @@ public class MOTD {
 	 * @return the MOTD as a Minecraft formatted string
 	 */
 	public static String MOTDFromDoc(String documentID) throws GeneralSecurityException, IOException {
+		
 		Document document = GoogleDocsAPI.getDocument(documentID);
 		JSONObject object = new JSONObject(document.getBody().toPrettyString());
 		
@@ -70,28 +71,28 @@ public class MOTD {
 				boolean italic = textStyle.has("italic");
 				boolean underline = textStyle.has("underline");
 				boolean strikeout = textStyle.has("strikethrough");
-				JSONObject color = textStyle.getJSONObject("foregroundColor").getJSONObject("color").getJSONObject("rgbColor");
+				boolean magic = textStyle.has("baselineOffset") && textStyle.getString("baselineOffset").equalsIgnoreCase("SUPERSCRIPT");
+				JSONObject color;
 				double r, g, b;
-				if (color.has("red"))
-					r = color.getDouble("red");
-				else
+				if (textStyle.has("foregroundColor")) {
+					color = textStyle.getJSONObject("foregroundColor").getJSONObject("color").getJSONObject("rgbColor");
+					r = color.has("red") ? color.getDouble("red") : 0;
+					g = color.has("green") ? color.getDouble("green") : 0;
+					b = color.has("blue") ? color.getDouble("blue") : 0;
+				} else {
 					r = 0;
-				
-				if (color.has("green"))
-					g = color.getDouble("green");
-				else
 					g = 0;
-				
-				if (color.has("blue"))
-					b = color.getDouble("blue");
-				else
 					b = 0;
+				}
+				
+				
 				String hex = rgbToHex(r, g, b);
 				MOTD.append(ChatColor.RESET);
 				if (bold) MOTD.append(ChatColor.BOLD);
 				if (italic) MOTD.append(ChatColor.ITALIC);
 				if (underline) MOTD.append(ChatColor.UNDERLINE);
 				if (strikeout) MOTD.append(ChatColor.STRIKETHROUGH);
+				if (magic) MOTD.append(ChatColor.MAGIC);
 				MOTD.append(ChatColor.of(hex).toString());
 				MOTD.append(elementText);
 			}
@@ -99,5 +100,6 @@ public class MOTD {
 		}
 		return MOTD.toString()
 				.replaceAll("\n{2,}", "\n");
+		
 	}
 }

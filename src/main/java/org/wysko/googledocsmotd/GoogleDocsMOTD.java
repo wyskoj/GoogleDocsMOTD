@@ -34,7 +34,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.GeneralSecurityException;
 import java.util.logging.Level;
 
 /**
@@ -59,10 +58,13 @@ public final class GoogleDocsMOTD extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onPing(ServerListPingEvent event) {
+		String motd;
 		try {
-			event.setMotd(MOTD.MOTDFromDoc(documentID));
-		} catch (IOException | GeneralSecurityException e) {
+			motd = MOTD.MOTDFromDoc(documentID);
+		} catch (Exception e) {
 			Bukkit.getLogger().log(Level.SEVERE, "The MOTD could not be set.", e);
+			return;
 		}
+		event.setMotd(motd);
 	}
 }
