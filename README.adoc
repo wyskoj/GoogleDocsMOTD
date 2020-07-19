@@ -67,7 +67,10 @@ All edits will occur in the linked Google Doc. GoogleDocsMOTD supports all Minec
 * Italics
 * Underline
 * Strikethrough
+* Magic
 * All text colors
+
+Use the magic formatting by superscripting text.
 
 Since the server list screen only shows two lines, any text after the first two lines of the Google Doc are omitted (they are still processed). This means that you can have a list of MOTDs in one document, and switch them out by placing it at the beginning of the document.
 
